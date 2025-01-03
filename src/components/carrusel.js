@@ -3,6 +3,9 @@ const carruselContainer = document.createElement('div')
 carruselContainer.classList.add('carruselContainer')
 carruselContainer.id = 'carruselContainer'
 
+const widthCarruselContainer = carruselImages.length
+carruselContainer.style.width = `${widthCarruselContainer * 100}%`
+
 for (let i = 0; i < carruselImages.length; i++) {
   const sectionImg = document.createElement('section')
   const carruselImage = document.createElement('img')
