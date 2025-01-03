@@ -1,0 +1,33 @@
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.mainContainer {
+    width: 900px;
+    height: 600px;
+    border: 2px solid black;
+    overflow: hidden;
+}
+
+.carruselContainer {
+    height: 500px;
+    display: flex;
+}
+
+.sectionImg {
+    width: 900px;
+    height: 500px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
