@@ -1,2 +1,5 @@
+import './style.css'
+import { carruselContainer } from './components/carrusel.js'
 const main = document.getElementById('main')
-main.innerHTML = `<h1>Hola Plunky</h1>`
+
+main.append(carruselContainer)
