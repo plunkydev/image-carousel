@@ -18,4 +18,4 @@ for (let i = 0; i < carruselImages.length; i++) {
   carruselContainer.append(sectionImg)
 }
 
-export { carruselContainer }
+export { carruselContainer, widthCarruselContainer }
