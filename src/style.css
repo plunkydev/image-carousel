@@ -1,3 +1,11 @@
+:root {
+    --carrusel-width: 900px;
+    --back-ground-color: rgb(66, 43, 66);
+    --back-ground-color-hover: rgb(66, 43, 66, 0.5);
+    --color-text: rgb(255, 255, 255);
+    --color-text-hover: rgb(255, 255, 255, 0.5);
+}
+
 * {
     box-sizing: border-box;
     padding: 0;
@@ -12,9 +20,10 @@ body {
 }
 
 .mainContainer {
-    width: 900px;
+    display: grid;
+    grid-template-rows: 500px 100px;
+    width: var(--carrusel-width);
     height: 600px;
-    border: 2px solid black;
     overflow: hidden;
 }
 
@@ -24,10 +33,54 @@ body {
 }
 
 .sectionImg {
-    width: 900px;
+    width: var(--carrusel-width);
     height: 500px;
     display: flex;
     justify-content: center;
     align-items: center;
     overflow: hidden;
+    border-radius: 5px;
+}
+
+.carruselImage {
+    width: var(--carrusel-width);
+    height: 500px;
+    object-fit: cover;
+}
+
+.carruselNavContainer {
+    display: grid;
+    width: var(--carrusel-width);
+    grid-template-columns: 1fr 7fr 1fr;
+}
+
+.carruselNavButtonLeft, .carruselNavButtonRight {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    margin: 20px;
+    font-size: 32px;
+    color: white;
+    border: none;
+    background-color: var(--back-ground-color);
+}
+
+.carruselNavButtonLeft:hover, .carruselNavButtonRight:hover {
+    cursor: pointer;
+    background-color: var(--back-ground-color-hover);
+}
+
+.navImg {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.navImgSection {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background-color: var(--back-ground-color);
+
 }
