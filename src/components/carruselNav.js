@@ -1,18 +1,20 @@
 import { carruselImages } from '../images/imagesExport.js'
 
-const createCarruselNav = () => {
-  const carruselNav = document.createElement('div')
-  carruselNav.classList.add('carruselNavContainer')
-  carruselNav.id = 'carruselNavContainer'
-  return carruselNav
-}
+let count = 0
+let clicked = 0
+
+const createCarruselNav = () => Object.assign(document.createElement('div'), {
+  className: 'carruselNavContainer',
+  id: 'carruselNavContainer'
+})
 
 const createCarruselNavButton = (name, direction, text, action) => {
-  const carruselNavButton = document.createElement('button')
-  carruselNavButton.classList.add(`carruselNavButton${direction}`)
-  carruselNavButton.id = `carruselNavButton${name}`
-  carruselNavButton.textContent = text
-  carruselNavButton.addEventListener('click', (e) => action())
+  const carruselNavButton = Object.assign(document.createElement('button'), {
+    className: `carruselNavButton${direction}`,
+    id: `carruselNavButton${name}`,
+    textContent: text
+  })
+  carruselNavButton.addEventListener('click', action)
   return carruselNavButton
 }
 
@@ -31,32 +33,23 @@ const navegationImages = () => {
   return navImg
 }
 
-let count = 0
-let clicked = 0
 const actionLeft = () => {
-  if (clicked === 1) {
-    const carruselContainer = document.getElementById('carruselContainer')
-    count = 0
-    clicked = 0
-    carruselContainer.style.transform = `translateX(0%)`
-  } else if (clicked === 0) {
-    const carruselContainer = document.getElementById('carruselContainer')
-    const widthCarruselImg = carruselContainer.offsetWidth / carruselImages.length
-    const widthCarruselImgPercentage = (widthCarruselImg / carruselContainer.offsetWidth) * 100
-    count = (widthCarruselImgPercentage / carruselImages.length) - widthCarruselImgPercentage
+  const carruselContainer = document.getElementById('carruselContainer')
+  const widthCarruselImg = carruselContainer.offsetWidth / carruselImages.length
+  const widthCarruselImgPercentage = (widthCarruselImg / carruselContainer.offsetWidth) * 100
+
+  if (clicked === 0) {
+    count = widthCarruselImgPercentage - widthCarruselImgPercentage / carruselImages.length
     clicked = carruselImages.length - 1
     carruselContainer.style.transition = 'none'
-    carruselContainer.style.transform = `translateX(${count}%)`
-    count = widthCarruselImgPercentage - widthCarruselImgPercentage / carruselImages.length
   } else {
-    const carruselContainer = document.getElementById('carruselContainer')
-    const widthCarruselImg = carruselContainer.offsetWidth / carruselImages.length
-    const widthCarruselImgPercentage = (widthCarruselImg / carruselContainer.offsetWidth) * 100
     count -= widthCarruselImgPercentage / carruselImages.length
     clicked--
     carruselContainer.style.transition = 'transform 0.5s ease-in-out'
-    carruselContainer.style.transform = `translateX(-${count}%)`
   }
+
+  carruselContainer.style.transform = `translateX(-${count}%)`
+  vewiamgeBar(clicked)
 }
 const actionRight = () => {
   if (clicked === carruselImages.length - 1) {
@@ -74,7 +67,48 @@ const actionRight = () => {
     carruselContainer.style.transition = 'transform 0.5s ease-in-out'
     carruselContainer.style.transform = `translateX(-${count}%)`
   }
+  vewiamgeBar(clicked)
 }
+
+const vewiamgeBar = (current) => {
+  const allNavImgSection = document.querySelectorAll('.navImgSection')
+
+  for (let i = 0; i < allNavImgSection.length; i++) {
+    const navImgSection = document.getElementById(`navImgSection${i + 1}`)
+    navImgSection.style.backgroundColor = 'var(--back-ground-color-hover)'
+    navImgSection.style.width = '32px'
+    navImgSection.style.height = '32px'
+    navImgSection.addEventListener('mouseover', () => {
+      navImgSection.style.backgroundColor = 'var(--back-ground-color)'
+      navImgSection.style.width = '42px'
+      navImgSection.style.height = '42px'
+    })
+    navImgSection.addEventListener('mouseout', () => {
+      navImgSection.style.backgroundColor = 'var(--back-ground-color-hover)'
+      navImgSection.style.width = '32px'
+      navImgSection.style.height = '32px'
+    })
+
+    navImgSection.addEventListener('click', () => {
+      clicked = i
+      current = i
+      vewiamgeBar(i)
+    })
+    if (navImgSection.id === `navImgSection${current + 1}`) {
+      const navImgSection = document.getElementById(`navImgSection${current + 1}`)
+      navImgSection.style.backgroundColor = 'var(--back-ground-color)'
+      navImgSection.style.width = '42px'
+      navImgSection.style.height = '42px'
+      navImgSection.addEventListener('mouseout', () => {
+        navImgSection.style.backgroundColor = 'var(--back-ground-color)'
+        navImgSection.style.width = '42px'
+        navImgSection.style.height = '42px'
+      })
+    }
+  }
+  console.log(current + 1)
+}
+window.addEventListener('load', () => vewiamgeBar(clicked))
 
 const carruselNav = createCarruselNav()
 
