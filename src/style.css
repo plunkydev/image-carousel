@@ -1,6 +1,6 @@
 :root {
     --carrusel-width: 900px;
-    --back-ground-color: rgb(66, 43, 66);
+    --back-ground-color: rgb(43, 61, 66);
     --back-ground-color-hover: rgb(66, 43, 66, 0.5);
     --color-text: rgb(255, 255, 255);
     --color-text-hover: rgb(255, 255, 255, 0.5);
@@ -81,6 +81,6 @@ body {
     width: 32px;
     height: 32px;
     border-radius: 50%;
-    background-color: var(--back-ground-color);
-
+    background-color: var(--back-ground-color-hover);
+    cursor: pointer;
 }
