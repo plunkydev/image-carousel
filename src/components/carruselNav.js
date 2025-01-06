@@ -45,20 +45,18 @@ const imgSingleWidth = () => {
 
 const actionLeft = () => {
   const carruselContainer = document.getElementById('carruselContainer')
-  const widthCarruselImg = carruselContainer.offsetWidth / carruselImages.length
-  const widthCarruselImgPercentage = (widthCarruselImg / carruselContainer.offsetWidth) * 100
 
-  if (clicked === 0) {
-    count = widthCarruselImgPercentage - widthCarruselImgPercentage / carruselImages.length
+  if (count === 0) {
+    count += imgSingleWidth() * (carruselImages.length - 1)
     clicked = carruselImages.length - 1
     carruselContainer.style.transition = 'none'
+    carruselContainer.style.transform = `translateX(-${count}%)`
   } else {
-    count -= widthCarruselImgPercentage / carruselImages.length
+    count -= imgSingleWidth()
     clicked--
     carruselContainer.style.transition = 'transform 0.5s ease-in-out'
+    carruselContainer.style.transform = `translateX(-${count}%)`
   }
-
-  carruselContainer.style.transform = `translateX(-${count}%)`
   vewiamgeBar(clicked)
 }
 const actionRight = () => {
