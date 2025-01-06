@@ -51,7 +51,7 @@ body {
     display: grid;
     width: var(--carrusel-width);
     grid-template-columns: 1fr 7fr 1fr;
-    justify-content: center;
+    justify-items: center;
 }
 
 .carruselNavButtonLeft, .carruselNavButtonRight {
