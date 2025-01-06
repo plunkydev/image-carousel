@@ -147,4 +147,4 @@ carruselNav.append(
   createCarruselNavButton('Right', 'Right', '>', actionRight)
 )
 
-export { carruselNav }
+export { carruselNav, actionRight }
